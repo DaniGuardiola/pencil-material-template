@@ -10,34 +10,56 @@
                 <title>
                     <xsl:value-of select="/p:Document/p:Properties/p:Property[@name='fileName']/text()"/>
                 </title>
+                <script type="text/javascript" src="Resources/Script.js">
+                    //
+                </script>
             </head>
             <body>
-                <h1 id="documentTitle"><xsl:value-of select="/p:Document/p:Properties/p:Property[@name='fileName']/text()"/></h1>
-                <p id="documentMetadata">Exported at: <xsl:value-of select="/p:Document/p:Properties/p:Property[@name='exportTime']/text()"/></p>
-                <xsl:apply-templates select="/p:Document/p:Pages/p:Page" />
+                <div id="page">
+                    <div id="content">
+                        <h1 id="documentTitle"><span> <xsl:value-of select="/p:Document/p:Properties/p:Property[@name='fileName']/text()"/></span></h1>
+                        <xsl:apply-templates select="/p:Document/p:Pages/p:Page" />
+                        <div id="navigator">
+                            <div class="NavLink" id="prevLink">
+                                <div class="Wrapper">
+                                    <a href="#">&#160;</a>
+                                </div>
+                            </div>
+                            <div class="NavLink NavNextLink" id="nextLink">
+                                <div class="Wrapper">
+                                    <a href="#">&#160;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="footer">
+                    </div>
+                </div>
             </body>
         </html>
     </xsl:template>
     <xsl:template match="p:Page">
+
         <div class="Page" id="{p:Properties/p:Property[@name='fid']/text()}_page">
-            <h2>
-                <xsl:value-of select="p:Properties/p:Property[@name='name']/text()"/>
-            </h2>
-            <div class="ImageContainer">
-                <img src="{@rasterized}"
-                    width="{p:Properties/p:Property[@name='width']/text()}"
-                    height="{p:Properties/p:Property[@name='height']/text()}"
-                    usemap="#map_{p:Properties/p:Property[@name='fid']/text()}"/>
+            <div class="Texts">
+                <h2 class="Title"><xsl:value-of select="p:Properties/p:Property[@name='name']/text()"/></h2>
+                <xsl:if test="p:Note/node()">
+                    <p class="Note">
+                        <xsl:apply-templates select="p:Note/node()" mode="processing-notes"/>
+                    </p>
+                </xsl:if>
             </div>
-            <xsl:if test="p:Note">
-                <p class="Notes">
-                    <xsl:apply-templates select="p:Note/node()" mode="processing-notes"/>
-                </p>
-            </xsl:if>
-            <map name="map_{p:Properties/p:Property[@name='fid']/text()}">
-                <xsl:apply-templates select="p:Links/p:Link" />
-            </map>
+            <div class="Image">
+                <img src="{@rasterized}" width="{p:Properties/p:Property[@name='width']/text()}" height="{p:Properties/p:Property[@name='height']/text()}" usemap="#map_{p:Properties/p:Property[@name='fid']/text()}" id="{p:Properties/p:Property[@name='fid']/text()}_page_image"/>
+                <div class="ImageFooter">&#160;</div>
+                <xsl:if test="p:Links/p:Link">
+                    <map name="map_{p:Properties/p:Property[@name='fid']/text()}">
+                        <xsl:apply-templates select="p:Links/p:Link" />
+                    </map>
+                </xsl:if>
+            </div>
         </div>
+
     </xsl:template>
     <xsl:template match="p:Link">
         <area shape="rect"
