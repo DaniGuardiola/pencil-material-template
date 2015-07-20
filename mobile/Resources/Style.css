@@ -1,43 +1,207 @@
-body {
-    background: #000;
-    font-family: "Liberation Sans", Arial, sans-serif;
-    font-size: .8em;
+* {
+    box-sizing: border-box;
 }
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    opacity: 1;
+    padding-top: 1px;
+    margin-top: -1px;
+    background: #EEEEEE;
+    font-family: 'Roboto', 'Noto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: opacity 0.25s;
+}
+
+body:not(.ready) {
+    opacity: 0;
+}
+
+#page,
+#maps-element {
+    display: none;
+}
+
+#toolbar {
+    position: fixed;
+    top: 0;
+    display: flex;
+    padding-top: 1px;
+    margin-top: -1px;
+    width: 100%;
+    height: 64px;
+    background-color: #3F51B5;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+#toolbar>* {
+    flex-shrink: 0;
+}
+
+#toolbar-icon {
+    background-image: url("icon-edit.png");
+    margin-top: 20px;
+    margin-left: 24px;
+}
+
+#prev-icon {
+    background-image: url("icon-prev.png");
+    margin-top: 8px;
+}
+
+#next-icon {
+    background-image: url("icon-next.png");
+    margin-top: 8px;
+    margin-right: 12px;
+}
+
+#prev-icon:not(.on),
+#next-icon:not(.on) {
+    width: 0;
+}
+
+#title {
+    color: #fff;
+    margin-top: 18px;
+    margin-left: 32px;
+    display: block;
+}
+
+#page-title {
+    color: #C5CAE9;
+    margin-top: 18px;
+    margin-left: 16px;
+    display: block;
+}
+
+#material-panel {
+    position: relative;
+    background-color: #fff;
+    height: 320px;
+    width: 896px;
+    margin-top: 320px;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+#image-container {
+    display: inline-block;
+    z-index: 1;
+    border: solid 4px #616161;
+    border-top-width: 24px;
+    border-bottom-width: 48px;
+    border-radius: 12px;
+    position: absolute;
+    top: 50%;
+    left: 64px;
+    transform: translate(0, -50%);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+#notes {
+    position: absolute;
+    right: 48px;
+    width: 384px;
+    height: 304px;
+    padding: 8px;
+    border: solid #3F51B5;
+    border-width: 4px 0;
+    top: 8px;
+    overflow: auto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+img.map,
+map area {
+    outline: none;
+}
+
+.material-icon {
+    height: 24px;
+    width: 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.material-icon-button {
+    height: 48px;
+    width: 48px;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.flex-space {
+    flex: 1;
+}
+
+
+/* FONT */
+
+.font-title {
+    text-rendering: optimizeLegibility;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+}
+
+
+/*
+
 #page {
     width: 1100px;
     height: 620px;
-    
     position: absolute;
     left: 50%;
     top: 50%;
     margin-top: -310px;
     margin-left: -550px;
-    
-    background: url(bg.jpg) 50% 50% no-repeat #2C2C2C;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
+
 #content {
     z-index: 2;
 }
+
 #documentTitle {
     text-align: center;
     font-size: .9em;
     margin: 0px;
     margin-top: 4px;
 }
+
 #documentTitle span {
     color: #292929;
     text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.04);
     letter-spacing: -1px;
-    
     padding: 2px 6px;
     xbackground: rgba(255, 255, 255, .03);
-    
     -moz-border-radius: 5px;
 }
 
 #content .Page {
     display: none;
 }
+
 #content .TargetPage {
     display: block !important;
 }
@@ -48,32 +212,37 @@ body {
     height: 400px;
     right: 30px;
     top: 35px;
-    color: #ccc;
-    
+    color: rgba(0, 0, 0, 0.87);
     overflow: auto;
 }
+
 #content .Page .Texts h2 {
-    font-size: 2.4em;
-    margin: 0px;
-    font-weight: bold;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, .3);
-    letter-spacing: -1px;
+    text-rendering: optimizeLegibility;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -.012em;
+    line-height: 32px;
 }
 
 #content .Page .Image {
     position: absolute;
     width: 820px;
     height: 580px;
-    
     top: 20px;
     left: 20px;
     z-index: 5;
+}
+
+
 }
 #content .Page .Image img {
     position: absolute;
     left: 50%;
     top: 50%;
-    border: none;
+    border: 10px solid #616161;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 #content .Page .Image .ImageFooter {
     display: none;
@@ -82,7 +251,6 @@ body {
     background: rgba(0, 0, 0, 0);
     -moz-box-shadow: 0px 10px 10px 2px rgba(0, 0, 0, .7);
     -webkit-box-shadow: 0px 10px 10px 2px rgba(0, 0, 0, .7);
-    
     margin: 0px 3px;
     margin-top: -12px;
     z-index: 4;
@@ -92,7 +260,6 @@ body {
     width: 220px;
     right: 20px;
     bottom: 70px;
-    
     display: block;
 }
 #navigator .NavLink {
@@ -100,7 +267,6 @@ body {
     height: 35px;
     #position: relative;
     overflow: hidden;
-    
     margin-right: 30px;
     opacity: .3;
     zoom: 1;
@@ -111,10 +277,8 @@ body {
     display: table-cell;
     vertical-align: middle;
     width: 180px;
-    
     padding-left: 30px;
     padding-right: 10px;
-    
     background: url(back.png) 0% 50% no-repeat;
 }
 #navigator .NavNextLink {
@@ -132,27 +296,23 @@ body {
     #position: relative;
     #top: -50%;
     width: 150px;
-    
     color: #888;
     text-decoration: none;
     font-weight: bold;
-    
     line-height: 1.1em;
-    
     outline: none;
 }
 #navigator .NavLink:hover {
     opacity: 1;
     text-shadow: 0px 0px 3px #000;
 }
-
 #footer {
     position: absolute;
     z-index: 1;
-    
     background: #fff;
     height: 50px;
     width: 100%;
     left: 0px;
     bottom: 0px;
 }
+*/
