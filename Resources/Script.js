@@ -334,6 +334,50 @@ window.onload = function () {
         document.body.appendChild(mapsElement);
     }
 
+    var lastNoMapClick = 0;
+    var noMapClickActive = false;
+
+    function noMapClick() {
+        if (noMapClickActive) {
+            return;
+        }
+        noMapClickActive = true;
+        var usemap = document.getElementById("image").getAttribute("usemap");
+        var map = document.getElementById("maps-element").querySelector("[name=\"" + usemap.substr(1) + "\"]");
+        var areas = map.querySelectorAll("area");
+        var i, element, coord;
+
+        for (i = 0; i < areas.length; i++) {
+            coord = areas[i].getAttribute("coords").split(",");
+            coord = {
+                left: coord[0],
+                top: coord[1],
+                right: coord[2],
+                bottom: coord[3]
+            };
+            coord.height = coord.bottom - coord.top;
+            coord.width = coord.right - coord.left;
+            element = document.createElement("div");
+            element.id = "no-map-click-" + lastNoMapClick;
+            element.classList.add("no-map-click");
+            element.style.left = coord.left + "px";
+            element.style.top = coord.top + "px";
+            element.style.height = coord.height + "px";
+            element.style.width = coord.width + "px";
+            document.getElementById("image-container").appendChild(element);
+
+            function removeElement() {
+                element.parentNode.removeChild(document.getElementById("no-map-click-" + lastNoMapClick));
+                noMapClickActive = false;
+            }
+            setTimeout(removeElement, 500);
+        }
+    }
+
+    function setupNoMapClick() {
+        document.getElementById("image").addEventListener("click", noMapClick);
+    }
+
     function start() {
         addStyle();
         data = getData();
@@ -345,6 +389,7 @@ window.onload = function () {
         document.body.scrollTop = 0;
         setupHashChange();
         setupKeyActions();
+        setupNoMapClick();
         document.body.classList.add("ready");
     }
 
