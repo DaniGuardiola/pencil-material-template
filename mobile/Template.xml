@@ -1,0 +1,8 @@
+<Template xmlns="http://www.evolus.vn/Namespace/Pencil">
+    <Property name="id">Material:Design:Mobile</Property>
+    <Property name="name">Material Design mobile</Property>
+    <Property name="author">Dani Guardiola</Property>
+    <Property name="description">Material designed template adapted for mobile</Property>
+    
+    <Property name="styleSheet">StyleSheet.xslt</Property>
+</Template>
