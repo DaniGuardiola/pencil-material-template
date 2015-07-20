@@ -5,6 +5,7 @@ A material design template for [Pencil project](https://github.com/nathanielw/pe
 * Beautiful Material Design
 * Left and right arrows to navigate
 * Responsive
+* Click the prototype to see the hotspots
 * Three options: mobile, tablet and desktop (at the moment only mobile has been developed)
 
 # Download
