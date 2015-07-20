@@ -98,6 +98,7 @@ body:not(.ready) {
 
 #image-container {
     z-index: 1;
+    position: relative;
     border: solid 4px #616161;
     border-top-width: 24px;
     border-bottom-width: 48px;
