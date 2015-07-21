@@ -150,8 +150,8 @@
         if (!page.mapResize) {
             try {
                 window.imageMapResize(currentPage.map);
-                var evt = document.createEvent('UIEvents');
-                evt.initUIEvent('resize', true, false, window, 0);
+                var evt = document.createEvent("UIEvents");
+                evt.initUIEvent("resize", true, false, window, 0);
                 window.dispatchEvent(evt);
             } catch (e) {
                 console.log(e);
@@ -282,11 +282,10 @@
             element.style.width = coord.width + "px";
             document.getElementById("image-container").appendChild(element);
 
-            function removeElement() {
+            setTimeout(function() {
                 element.parentNode.removeChild(document.getElementById("no-map-click-" + lastNoMapClick));
                 noMapClickActive = false;
-            }
-            setTimeout(removeElement, 500);
+            }, 500);
         }
     }
 
