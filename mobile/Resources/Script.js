@@ -97,13 +97,6 @@
         document.body.insertBefore(element, document.getElementById("page"));
     }
 
-    function addStyle() {
-        var style = document.createElement("link");
-        style.setAttribute("rel", "stylesheet");
-        style.setAttribute("href", "Resources/Style.css");
-        document.getElementsByTagName("head")[0].appendChild(style);
-    }
-
     function getData() {
         var i, p;
 
@@ -335,7 +328,7 @@
             setTimeout(function() {
                 element.parentNode.removeChild(document.getElementById("no-map-click-" + lastNoMapClick));
                 noMapClickActive = false;
-            }, 500);
+            }, 700);
         }
     }
 
@@ -344,7 +337,6 @@
     }
 
     function start() {
-        addStyle();
         data = getData();
         moveMaps();
         document.getElementById("page").parentNode.removeChild(document.getElementById("page"));
