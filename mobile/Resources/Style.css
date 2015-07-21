@@ -148,6 +148,8 @@ body:not(.ready) {
 #image-container.fullscreen {
     border: none;
     overflow: auto;
+    margin: 0;
+    border-radius: 0;
 }
 
 #image {
