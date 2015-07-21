@@ -9,7 +9,7 @@ A material design template for [Pencil project](https://github.com/nathanielw/pe
 * Three options: mobile, tablet and desktop (at the moment only mobile has been developed)
 
 # Download
-* [Mobile](https://github.com/DaniGuardiola/pencil-material-template/raw/master/build/pencil-material-template-mobile.zip)
+* [Mobile](https://github.com/DaniGuardiola/pencil-material-template/raw/master/build/pencil-material-template-mobile.zip) ([Demo](http://daniguardiola.github.io/pencil-material-template/))
 
 # Install
 1. In Pencil, go to ```Tools > Manage Export Template...```
