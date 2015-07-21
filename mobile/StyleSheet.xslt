@@ -12,7 +12,7 @@
                 </title>
                 <script type="text/javascript" src="Resources/Script.js"></script>
                 <link rel="stylesheet" type="text/css" href="Resources/Style.css" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1.0" />
             </head>
             <body>
                 <div style="display: none;" id="page">
