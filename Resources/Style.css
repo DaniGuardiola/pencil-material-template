@@ -21,7 +21,7 @@ body {
     background: #EEEEEE;
     font-family: 'Roboto', 'Noto', sans-serif;
     -webkit-font-smoothing: antialiased;
-    transition: opacity 0.25s;
+    transition: opacity 0.5s;
 }
 
 body:not(.ready) {
