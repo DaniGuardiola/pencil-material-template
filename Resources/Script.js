@@ -14,6 +14,7 @@
     function renderDOM() {
         var toolbar = document.createElement("div");
         toolbar.id = "toolbar";
+        toolbar.classList.add("transition-before");
 
         var toolbarIcon = document.createElement("div");
         toolbarIcon.id = "toolbar-icon";
@@ -72,6 +73,7 @@
 
         var panel = document.createElement("div");
         panel.id = "material-panel";
+        panel.classList.add("transition-before");
 
         var imageContainer = document.createElement("div");
         imageContainer.id = "image-container";
@@ -355,6 +357,10 @@
         setupNoMapClick();
         addFullscreenExitListeners();
         document.body.classList.add("ready");
+        setTimeout(function() {
+            document.getElementById("toolbar").classList.remove("transition-before");
+            document.getElementById("material-panel").classList.remove("transition-before");
+        }, 500);
     }
 
     window.addEventListener("load", start);
