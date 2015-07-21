@@ -10,13 +10,12 @@
                 <title>
                     <xsl:value-of select="/p:Document/p:Properties/p:Property[@name='fileName']/text()"/>
                 </title>
-                <script type="text/javascript" src="Resources/Script.js">
-                    //
-                </script>
+                <script type="text/javascript" src="Resources/Script.js"></script>
+                <link rel="stylesheet" type="text/css" href="Resources/Style.css" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </head>
             <body>
-                <div id="page">
+                <div style="display: none;" id="page">
                     <div id="content">
                         <h1 id="documentTitle"><span> <xsl:value-of select="/p:Document/p:Properties/p:Property[@name='fileName']/text()"/></span></h1>
                         <xsl:apply-templates select="/p:Document/p:Pages/p:Page" />
