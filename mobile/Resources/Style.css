@@ -34,6 +34,8 @@ body:not(.ready) {
 }
 
 #toolbar {
+    overflow: hidden;
+    transition: height 0.25s;
     position: fixed;
     top: 0;
     display: flex;
@@ -43,6 +45,10 @@ body:not(.ready) {
     height: 182px;
     background-color: #3F51B5;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+#toolbar.transition-before {
+    height: 0;
 }
 
 #toolbar>* {
@@ -110,6 +116,8 @@ body:not(.ready) {
 }
 
 #material-panel {
+    transition-property: height, width, margin-top, max-width;
+    transition-duration: 0.5s;
     position: relative;
     height: 320px;
     width: 90%;
@@ -119,7 +127,13 @@ body:not(.ready) {
     margin-left: auto;
 }
 
+#material-panel.transition-before {
+    margin-top: 250%;
+}
+
 #image-container {
+    transition-property: top, left, transform;
+    transition-duration: 0.25s;
     z-index: 1;
     position: relative;
     border: solid 4px #616161;
@@ -141,6 +155,8 @@ body:not(.ready) {
 }
 
 #notes {
+    transition-property: width;
+    transition-duration: 0.25s;
     width: 100%;
     height: 100%;
     padding: 8px;
@@ -200,6 +216,9 @@ map area {
 }
 
 @media all and (min-width: 768px) {
+    #material-panel.transition-before {
+        margin-top: 150%;
+    }
     #page-title {
         display: block;
     }
