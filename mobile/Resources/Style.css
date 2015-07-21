@@ -147,6 +147,7 @@ body:not(.ready) {
 
 #image-container.fullscreen {
     border: none;
+    overflow: auto;
 }
 
 #image {
