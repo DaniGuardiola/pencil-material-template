@@ -27,7 +27,6 @@
         var pageTitle = document.createElement("span");
         pageTitle.id = "page-title";
         pageTitle.classList.add("font-title");
-        pageTitle.textContent = " - ";
 
         var space = document.createElement("div");
         space.classList.add("flex-space");
@@ -42,12 +41,32 @@
         nextIcon.classList.add("material-icon-button");
         nextIcon.addEventListener("click", nextClick);
 
+        var secondRow = document.createElement("div");
+        secondRow.id = "second-row";
+
+        var secondPageTitle = document.createElement("span");
+        secondPageTitle.id = "second-page-title";
+        secondPageTitle.classList.add("font-title");
+
+        var secondSpace = document.createElement("div");
+        secondSpace.classList.add("flex-space");
+
+        var fullscreenIcon = document.createElement("div");
+        fullscreenIcon.id = "fullscreen-icon";
+        fullscreenIcon.classList.add("material-icon-button");
+        fullscreenIcon.addEventListener("click", fullscreenClick);
+
+        secondRow.appendChild(secondPageTitle);
+        secondRow.appendChild(secondSpace);
+        secondRow.appendChild(fullscreenIcon);
+
         toolbar.appendChild(toolbarIcon);
         toolbar.appendChild(title);
         toolbar.appendChild(pageTitle);
         toolbar.appendChild(space);
         toolbar.appendChild(prevIcon);
         toolbar.appendChild(nextIcon);
+        toolbar.appendChild(secondRow);
 
         insertBeforePage(toolbar);
 
@@ -123,7 +142,9 @@
     }
 
     function setPageTitle(title, index) {
-        document.getElementById("page-title").textContent = "[" + (index + 1) + "/" + data.pages.length + "] " + title;
+        title = "[" + (index + 1) + "/" + data.pages.length + "] " + title;
+        document.getElementById("page-title").textContent = title;
+        document.getElementById("second-page-title").textContent = title;
     }
 
     function checkHash() {
@@ -205,6 +226,19 @@
 
     function nextClick() {
         goToPage(getNextPage().id);
+    }
+
+    function fullscreenClick() {
+        var image = document.getElementById("image");
+        if (image.requestFullscreen) {
+            image.requestFullscreen();
+        } else if (image.msRequestFullscreen) {
+            image.msRequestFullscreen();
+        } else if (image.mozRequestFullScreen) {
+            image.mozRequestFullScreen();
+        } else if (image.webkitRequestFullscreen) {
+            image.webkitRequestFullscreen();
+        }
     }
 
     function findPageById(id) {
