@@ -66,6 +66,12 @@ body:not(.ready) {
     margin-right: 12px;
 }
 
+#fullscreen-icon {
+    background-image: url("icon-fullscreen.png");
+    margin-top: 8px;
+    margin-right: 12px;
+}
+
 #prev-icon:not(.on),
 #next-icon:not(.on) {
     width: 0;
@@ -78,7 +84,8 @@ body:not(.ready) {
     display: block;
 }
 
-#page-title {
+#page-title,
+#second-page-title {
     color: #C5CAE9;
     margin-top: 18px;
     margin-left: 16px;
@@ -86,12 +93,28 @@ body:not(.ready) {
     display: block;
 }
 
+#page-title {
+    display: none;
+}
+
+#second-row {
+    height: 64px;
+    position: absolute;
+    max-width: 100%;
+    width: 384px;
+    overflow: hidden;
+    display: flex;
+    top: 64px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
 #material-panel {
     position: relative;
     height: 320px;
     width: 90%;
     max-width: 384px;
-    margin-top: 64px;
+    margin-top: 128px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -173,6 +196,12 @@ map area {
 }
 
 @media all and (min-width: 768px) {
+    #page-title {
+        display: block;
+    }
+    #second-row {
+        display: none;
+    }
     #material-panel {
         position: relative;
         height: 320px;
