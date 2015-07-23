@@ -28,14 +28,13 @@ body:not(.ready) {
     opacity: 0;
 }
 
-#page,
-#maps-element {
+#page {
     display: none;
 }
 
 #toolbar {
     overflow: hidden;
-    transition: height 0.25s;
+    transition: height 0.25s 0.25s;
     position: fixed;
     top: 0;
     display: flex;
@@ -48,7 +47,7 @@ body:not(.ready) {
 }
 
 #toolbar.transition-before {
-    height: 0;
+    height: 64px;
 }
 
 #toolbar>* {
@@ -158,6 +157,7 @@ body:not(.ready) {
 #image {
     width: 100%;
     height: auto;
+    cursor: url(pointer-not.png) 15 15, auto;
 }
 
 #notes {
@@ -177,9 +177,10 @@ body:not(.ready) {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
-img.map,
-map area {
+area {
     outline: none;
+    display: block;
+    cursor: url(pointer.png) 15 15, auto;
 }
 
 .no-map-click {
@@ -191,6 +192,7 @@ map area {
     animation-name: nomapanim;
     animation-duration: 0.4s;
     animation-iteration-count: 1;
+    cursor: url(pointer.png) 15 15, auto;
 }
 
 @keyframes nomapanim {

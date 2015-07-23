@@ -157,8 +157,9 @@
 
     function loadPage(page) {
         var image = document.getElementById("image");
+        var map = page.map ? page.map.getAttribute("name") : "";
         image.src = page.src;
-        image.setAttribute("usemap", "#" + page.map.getAttribute("name"));
+        image.setAttribute("usemap", "#" + map);
 
         var notes = document.getElementById("notes");
         notes.innerHTML = page.note || "<span style=\"color: #9E9E9E;\">There are no notes :)</span>";
@@ -300,14 +301,18 @@
         if (noMapClickActive) {
             return;
         }
-        noMapClickActive = true;
         var usemap = document.getElementById("image").getAttribute("usemap");
+        if (!usemap || usemap === "#") {
+            return;
+        }
+        noMapClickActive = true;
         var map = document.getElementById("maps-element").querySelector("[name=\"" + usemap.substr(1) + "\"]");
         var areas = map.querySelectorAll("area");
-        var i, element, coord;
+        var i, element, coord, href;
 
         for (i = 0; i < areas.length; i++) {
             coord = areas[i].getAttribute("coords").split(",");
+            href = areas[i].getAttribute("href");
             coord = {
                 left: coord[0],
                 top: coord[1],
@@ -316,7 +321,8 @@
             };
             coord.height = coord.bottom - coord.top;
             coord.width = coord.right - coord.left;
-            element = document.createElement("div");
+            element = document.createElement("a");
+            element.setAttribute("href", href);
             element.id = "no-map-click-" + lastNoMapClick;
             element.classList.add("no-map-click");
             element.style.left = coord.left + "px";
