@@ -21,14 +21,17 @@ body {
     background: #EEEEEE;
     font-family: 'Roboto', 'Noto', sans-serif;
     -webkit-font-smoothing: antialiased;
-    transition: opacity 0.5s;
+    transition: opacity 0.75s 0.2s;
 }
 
 body:not(.ready) {
     opacity: 0;
 }
 
-#page {
+#page,
+#notes .title,
+#next-icon-black,
+#prev-icon-black {
     display: none;
 }
 
@@ -41,13 +44,13 @@ body:not(.ready) {
     padding-top: 1px;
     margin-top: -1px;
     width: 100%;
-    height: 182px;
+    height: 168px;
     background-color: #3F51B5;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
 #toolbar.transition-before {
-    height: 64px;
+    height: 56px;
 }
 
 #toolbar>* {
@@ -56,8 +59,8 @@ body:not(.ready) {
 
 #toolbar-icon {
     background-image: url("icon-edit.png");
-    margin-top: 20px;
-    margin-left: 24px;
+    margin-top: 16px;
+    margin-left: 16px;
 }
 
 #prev-icon {
@@ -65,16 +68,30 @@ body:not(.ready) {
     margin-top: 8px;
 }
 
+#prev-icon-black {
+    background-image: url("icon-prev-black.png");
+    position: absolute;
+    top: 8px;
+    right: 56px;
+}
+
 #next-icon {
     background-image: url("icon-next.png");
     margin-top: 8px;
-    margin-right: 12px;
+    margin-right: 4px;
+}
+
+#next-icon-black {
+    background-image: url("icon-next-black.png");
+    position: absolute;
+    top: 8px;
+    right: 8px;
 }
 
 #fullscreen-icon {
     background-image: url("icon-fullscreen.png");
-    margin-top: 8px;
-    margin-right: 12px;
+    margin-top: 4px;
+    margin-right: 4px;
 }
 
 #prev-icon:not(.on),
@@ -84,32 +101,32 @@ body:not(.ready) {
 
 #title {
     color: #fff;
-    margin-top: 18px;
+    margin-top: 14px;
     margin-left: 32px;
     display: block;
+    flex-shrink: 1;
 }
 
-#page-title,
-#second-page-title {
+#mobile-page-title {
     color: #C5CAE9;
-    margin-top: 18px;
+    margin-top: 14px;
     margin-left: 16px;
     flex-shrink: 1;
     display: block;
 }
 
-#page-title {
+#notes-title {
     display: none;
 }
 
 #second-row {
-    height: 64px;
+    height: 56px;
     position: absolute;
     max-width: 100%;
     width: 384px;
     overflow: hidden;
     display: flex;
-    top: 64px;
+    top: 56px;
     left: 50%;
     transform: translate(-50%);
 }
@@ -131,20 +148,25 @@ body:not(.ready) {
 }
 
 #image-container {
-    transition-property: top, left, transform;
+    transition-property: top, left, transform, box-shadow;
     transition-duration: 0.25s;
     z-index: 1;
     position: relative;
-    border: solid 4px #616161;
+    border: solid 4px #212121;
+    background-color: #212121;
     border-top-width: 24px;
     border-bottom-width: 48px;
     border-radius: 12px;
     margin-bottom: 64px;
     width: 100%;
-    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
     outline: none;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+}
+
+#image-container:hover {
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
 #image-container.fullscreen {
@@ -165,9 +187,6 @@ body:not(.ready) {
     transition-duration: 0.25s;
     width: 100%;
     height: 100%;
-    padding: 8px;
-    border: solid #3F51B5;
-    border-width: 4px 0;
     overflow: auto;
     font-size: 14px;
     font-weight: 400;
@@ -175,6 +194,17 @@ body:not(.ready) {
     margin-bottom: 64px;
     background-color: #fff;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+#notes-content {
+    position: relative;
+    padding: 16px;
+}
+
+#notes .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 area {
@@ -220,6 +250,7 @@ area {
 .material-icon-button {
     height: 48px;
     width: 48px;
+    flex-shrink: 0;
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
@@ -227,6 +258,19 @@ area {
 
 .flex-space {
     flex: 1;
+}
+
+a {
+    color: #2196F3;
+    text-decoration: initial;
+}
+
+a:hover {
+    color: #1976D2;
+}
+
+a:active {
+    color: #0D47A1;
 }
 
 
@@ -242,11 +286,36 @@ area {
     line-height: 28px;
 }
 
+.font-headline {
+    text-rendering: optimizeLegibility;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -.012em;
+    line-height: 32px;
+}
+
 @media all and (min-width: 768px) {
+    #toolbar {
+        height: 192px;
+    }
+    #toolbar.transition-before {
+        height: 64px;
+    }
+    #toolbar-icon {
+        margin-left: 24px;
+        margin-top: 20px;
+    }
+    #title {
+        margin-top: 18px;
+    }
+    #fullscreen-icon {
+        margin-right: 8px;
+        margin-top: 8px;
+    }
     #material-panel.transition-before {
         margin-top: 150%;
     }
-    #page-title {
+    #notes-title {
         display: block;
     }
     #second-row {
@@ -264,9 +333,6 @@ area {
         right: 0;
         width: 304px;
         height: 100%;
-        padding: 8px;
-        border: solid #3F51B5;
-        border-width: 4px 0;
         top: 8px;
         overflow: auto;
         font-size: 14px;
@@ -275,29 +341,45 @@ area {
         background-color: #fff;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
     }
+    #notes .header {
+        display: none;
+    }
+    #notes .title {
+        display: inline-block;
+        width: 169px;
+    }
+    #next-icon-black,
+    #prev-icon-black {
+        display: block;
+    }
     #image-container {
         display: inline-block;
         width: initial;
-        z-index: 1;
-        border: solid 4px #616161;
-        border-top-width: 24px;
-        border-bottom-width: 48px;
-        border-radius: 12px;
         position: absolute;
-        margin-bottom: 64px;
         margin-left: 0;
         top: 50%;
         left: 0;
         transform: translate(0, -50%);
-        box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
     }
     #image {
         width: initial;
+    }
+    #image-container.fullscreen {
+        width: 100%;
+        overflow-x: hidden;
+    }
+    #image-container.fullscreen #image {
+        height: 100%;
+        margin-left: 50%;
+        transform: translate(-50%, 0);
     }
 }
 
 @media all and (min-width: 920px) {
     #notes {
         width: 384px;
+    }
+    #notes .title {
+        width: 249px;
     }
 }
