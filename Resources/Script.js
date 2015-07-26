@@ -25,10 +25,6 @@
         title.classList.add("font-title");
         title.textContent = data.title;
 
-        var pageTitle = document.createElement("span");
-        pageTitle.id = "page-title";
-        pageTitle.classList.add("font-title");
-
         var space = document.createElement("div");
         space.classList.add("flex-space");
 
@@ -45,9 +41,9 @@
         var secondRow = document.createElement("div");
         secondRow.id = "second-row";
 
-        var secondPageTitle = document.createElement("span");
-        secondPageTitle.id = "second-page-title";
-        secondPageTitle.classList.add("font-title");
+        var mobilePageTitle = document.createElement("span");
+        mobilePageTitle.id = "mobile-page-title";
+        mobilePageTitle.classList.add("font-title");
 
         var secondSpace = document.createElement("div");
         secondSpace.classList.add("flex-space");
@@ -57,16 +53,15 @@
         fullscreenIcon.classList.add("material-icon-button");
         fullscreenIcon.addEventListener("click", fullscreenClick);
 
-        secondRow.appendChild(secondPageTitle);
+        secondRow.appendChild(mobilePageTitle);
         secondRow.appendChild(secondSpace);
-        secondRow.appendChild(fullscreenIcon);
+        secondRow.appendChild(prevIcon);
+        secondRow.appendChild(nextIcon);
 
         toolbar.appendChild(toolbarIcon);
         toolbar.appendChild(title);
-        toolbar.appendChild(pageTitle);
         toolbar.appendChild(space);
-        toolbar.appendChild(prevIcon);
-        toolbar.appendChild(nextIcon);
+        toolbar.appendChild(fullscreenIcon);
         toolbar.appendChild(secondRow);
 
         insertBeforePage(toolbar);
@@ -86,6 +81,11 @@
 
         var notes = document.createElement("div");
         notes.id = "notes";
+
+        var notesContent = document.createElement("div");
+        notesContent.id = "notes-content";
+
+        notes.appendChild(notesContent);
 
         panel.appendChild(imageContainer);
         panel.appendChild(notes);
@@ -133,13 +133,13 @@
     }
 
     function updateTitle() {
-        document.title = data.title + " - Pencil";
+        var page = "[" + (currentPage.index + 1) + "/" + data.pages.length + "] " + currentPage.title;
+        document.title = data.title + ": " + page + " - Pencil";
     }
 
     function setPageTitle(title, index) {
         title = "[" + (index + 1) + "/" + data.pages.length + "] " + title;
-        document.getElementById("page-title").textContent = title;
-        document.getElementById("second-page-title").textContent = title;
+        document.getElementById("mobile-page-title").textContent = title;
     }
 
     function checkHash() {
@@ -161,8 +161,13 @@
         image.src = page.src;
         image.setAttribute("usemap", "#" + map);
 
-        var notes = document.getElementById("notes");
-        notes.innerHTML = page.note || "<span style=\"color: #9E9E9E;\">There are no notes :)</span>";
+        var notes = document.getElementById("notes-content");
+        var title = "[" + (page.index + 1) + "/" + data.pages.length + "] " + page.title;
+        updateTitle();
+        notes.innerHTML = "<span class=\"header font-headline\">Notes</span><span class=\"title font-headline\">" + title + "</span><div id=\"prev-icon-black\" class=\"material-icon-button on\"></div><div id=\"next-icon-black\" class=\"material-icon-button on\"></div><br>" + (page.note || "<span style=\"color: #9E9E9E;\">Nothing here :)</span>");
+
+        document.getElementById("prev-icon-black").addEventListener("click", prevClick);
+        document.getElementById("next-icon-black").addEventListener("click", nextClick);
 
         if (!page.mapResize) {
             try {
@@ -308,7 +313,11 @@
         noMapClickActive = true;
         var map = document.getElementById("maps-element").querySelector("[name=\"" + usemap.substr(1) + "\"]");
         var areas = map.querySelectorAll("area");
-        var i, element, coord, href;
+        var i, element, coord, href, left;
+
+        var containerLeft = document.getElementById("image-container").getBoundingClientRect().left;
+        var imageLeft = document.getElementById("image").getBoundingClientRect().left;
+        var distance = imageLeft - (containerLeft + 4);
 
         for (i = 0; i < areas.length; i++) {
             coord = areas[i].getAttribute("coords").split(",");
@@ -321,6 +330,7 @@
             };
             coord.height = coord.bottom - coord.top;
             coord.width = coord.right - coord.left;
+            coord.left = distance ? +coord.left + distance : coord.left;
             element = document.createElement("a");
             element.setAttribute("href", href);
             element.id = "no-map-click-" + lastNoMapClick;
@@ -347,7 +357,6 @@
         moveMaps();
         document.getElementById("page").parentNode.removeChild(document.getElementById("page"));
         renderDOM();
-        updateTitle();
         checkHash();
         document.body.scrollTop = 0;
         setupHashChange();
