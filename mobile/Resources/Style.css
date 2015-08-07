@@ -95,8 +95,11 @@ body:not(.ready) {
 }
 
 #prev-icon:not(.on),
-#next-icon:not(.on) {
-    width: 0;
+#next-icon:not(.on),
+#prev-icon-black:not(.on),
+#next-icon-black:not(.on) {
+    opacity: 0;
+    pointer-events: none;
 }
 
 #title {

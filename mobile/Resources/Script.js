@@ -75,6 +75,9 @@
 
         var image = document.createElement("img");
         image.id = "image";
+        image.ondragstart = function() {
+            return false;
+        };
         image.setAttribute("hidefocus", "true");
 
         imageContainer.appendChild(image);
@@ -148,7 +151,6 @@
         if (page) {
             setPageTitle(page.title, page.index);
             currentPage = page;
-            updateNavigators();
             loadPage(page);
         } else {
             goToPage(data.pages[0].id);
@@ -180,6 +182,7 @@
             }
             page.mapResize = true;
         }
+        updateNavigators();
 
     }
 
@@ -207,17 +210,23 @@
     function updateNavigators() {
         var prev = document.getElementById("prev-icon");
         var next = document.getElementById("next-icon");
+        var prevBlack = document.getElementById("prev-icon-black");
+        var nextBlack = document.getElementById("next-icon-black");
 
         if (getPreviousPage()) {
             prev.classList.add("on");
+            prevBlack.classList.add("on");
         } else {
             prev.classList.remove("on");
+            prevBlack.classList.remove("on");
         }
 
         if (getNextPage()) {
             next.classList.add("on");
+            nextBlack.classList.add("on");
         } else {
             next.classList.remove("on");
+            nextBlack.classList.remove("on");
         }
     }
 
@@ -313,9 +322,10 @@
         noMapClickActive = true;
         var map = document.getElementById("maps-element").querySelector("[name=\"" + usemap.substr(1) + "\"]");
         var areas = map.querySelectorAll("area");
-        var i, element, coord, href, left;
+        var i, element, coord, href;
 
         var containerLeft = document.getElementById("image-container").getBoundingClientRect().left;
+        var fullscreen = document.getElementById("image-container").classList.contains("fullscreen") ? 4 : 0;
         var imageLeft = document.getElementById("image").getBoundingClientRect().left;
         var distance = imageLeft - (containerLeft + 4);
 
@@ -330,7 +340,7 @@
             };
             coord.height = coord.bottom - coord.top;
             coord.width = coord.right - coord.left;
-            coord.left = distance ? +coord.left + distance : coord.left;
+            coord.left = distance ? +coord.left + distance + fullscreen : coord.left;
             element = document.createElement("a");
             element.setAttribute("href", href);
             element.id = "no-map-click-" + lastNoMapClick;
@@ -339,10 +349,18 @@
             element.style.top = coord.top + "px";
             element.style.height = coord.height + "px";
             element.style.width = coord.width + "px";
+            element.addEventListener("click", function() {
+                var nomapclicks = document.querySelectorAll(".no-map-click");
+                for (var i = 0; i < nomapclicks.length; i++) {
+                    nomapclicks[i].parentNode.removeChild(nomapclicks[i]);
+                }
+            });
             document.getElementById("image-container").appendChild(element);
 
             setTimeout(function() {
-                element.parentNode.removeChild(document.getElementById("no-map-click-" + lastNoMapClick));
+                if (element.parentNode) {
+                    element.parentNode.removeChild(document.getElementById("no-map-click-" + lastNoMapClick));
+                }
                 noMapClickActive = false;
             }, 700);
         }
