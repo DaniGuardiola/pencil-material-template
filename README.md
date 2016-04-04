@@ -2,7 +2,7 @@
 A material design template for [Pencil, the open source prototyping tool for Windows, Mac, Linux and Firefox](https://github.com/nathanielw/pencil) (HTML export template)
 
 # Download
-* [Mobile](https://github.com/DaniGuardiola/pencil-material-template/raw/master/build/pencil-material-template-mobile.zip) ([Demo 1](http://daniguardiola.github.io/pencil-material-template/) [Demo 2](http://youngr.daniguardiola.me/))
+* [Mobile](https://github.com/DaniGuardiola/pencil-material-template/raw/master/build/pencil-material-template-mobile.zip) ([Demo 1](http://daniguardiola.github.io/pencil-material-template/) | [Demo 2](http://youngr.daniguardiola.me/))
 
 # Features
 * Beautiful Material Design
@@ -25,7 +25,6 @@ Use these collections from [Nathaniel Watson](http://www.nwatson.nz/):
 
 # Screenshots
 ![Example](http://i.imgur.com/UehgCdD.png?raw=true)
-![Mobile layout](http://i.imgur.com/b0VY7xy.png?raw=true)
 ![Click areas](http://i.imgur.com/hT2k79Y.png?raw=true)
 
 # Todo
