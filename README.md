@@ -1,6 +1,9 @@
 # Pencil Material Design Template
 A material design template for [Pencil, the open source prototyping tool for Windows, Mac, Linux and Firefox](https://github.com/nathanielw/pencil) (HTML export template)
 
+# Download
+* [Mobile](https://github.com/DaniGuardiola/pencil-material-template/raw/master/build/pencil-material-template-mobile.zip) ([Demo 1](http://daniguardiola.github.io/pencil-material-template/) [Demo 2](http://youngr.daniguardiola.me/))
+
 # Features
 * Beautiful Material Design
 * Left and right buttons to navigate
@@ -9,9 +12,6 @@ A material design template for [Pencil, the open source prototyping tool for Win
 * Three options: mobile, tablet and desktop (at the moment only mobile has been developed)
 * Mobile web support: allows you to open it on a mobile device in fullscreen, just like if you were using a real app.
 * Keyboard arrow keys support
-
-# Download
-* [Mobile](https://github.com/DaniGuardiola/pencil-material-template/raw/master/build/pencil-material-template-mobile.zip) ([Demo](http://daniguardiola.github.io/pencil-material-template/))
 
 # Install
 1. In Pencil, go to ```Tools > Manage Export Template...```
