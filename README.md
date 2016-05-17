@@ -1,5 +1,5 @@
 # Pencil Material Design Template
-A material design template for [Pencil, the open source prototyping tool for Windows, Mac, Linux and Firefox](https://github.com/nathanielw/pencil) (HTML export template)
+A material design template for [Pencil, the open source prototyping tool for Windows, Mac, Linux and Firefox](https://github.com/prikhi/pencil) (HTML export template)
 
 # Download
 * [Mobile](https://github.com/DaniGuardiola/pencil-material-template/raw/master/build/pencil-material-template-mobile.zip) ([Demo 1](http://daniguardiola.github.io/pencil-material-template/) | [Demo 2](http://youngr.daniguardiola.me/))
