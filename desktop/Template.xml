@@ -1,0 +1,8 @@
+<Template xmlns="http://www.evolus.vn/Namespace/Pencil">
+    <Property name="id">Material:Design:Desktop</Property>
+    <Property name="name">Material Design Desktop</Property>
+    <Property name="author">Ben Winding</Property>
+    <Property name="description">Material designed template adapted for desktop</Property>
+    
+    <Property name="styleSheet">StyleSheet.xslt</Property>
+</Template>
