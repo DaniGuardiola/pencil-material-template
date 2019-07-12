@@ -85,6 +85,10 @@
         fakeClose.id = "fake-close-btn";
         imageContainer.appendChild(fakeClose);
 
+        var fakeUrlBar = document.createElement("div");
+        fakeUrlBar.id = "fake-url-bar";
+        imageContainer.appendChild(fakeUrlBar);
+
         var notes = document.createElement("div");
         notes.id = "notes";
 

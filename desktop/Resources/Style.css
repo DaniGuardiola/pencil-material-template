@@ -397,3 +397,14 @@ a:active {
     border-color: black;
     opacity: 0.6;
 }
+
+#fake-url-bar {
+    background-color: whitesmoke;
+    width: 60%;
+    height: 22px;
+    border: #777 solid 1px;
+    position: absolute;
+    left: 24px;
+    top: -25px;
+    border-radius: 10px;
+}
