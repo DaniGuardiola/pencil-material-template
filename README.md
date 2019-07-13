@@ -24,14 +24,25 @@ Use these collections from [Nathaniel Watson](http://www.nwatson.nz/):
 - [Material Icons for Pencil](https://github.com/nathanielw/Material-Icons-for-Pencil): all 1000+ icons from Material Design Icons in vector (can be scaled at any size)
 
 # Screenshots
-![Example](http://i.imgur.com/UehgCdD.png?raw=true)
-![Click areas](http://i.imgur.com/hT2k79Y.png?raw=true)
+
+## Mobile Template
+![Example](https://i.imgur.com/UehgCdD.png)
+![Click areas](https://i.imgur.com/hT2k79Y.png)
+
+## Desktop Template
+![Example](https://i.imgur.com/ht4b56H.png)
 
 # Todo
-* Add tablet and desktop editions
-* Add custom size edition
-* Solve a few bugs
-* Use Polymer paper elements
-* Web component version
-* Support for experience customization based on values indicated on each page notes
-* Support global template UI customization
+- [x] Add desktop edition
+- [ ] Add tablet edition
+- [ ] Add custom size edition
+- [ ] Solve a few bugs
+- [ ] Use Polymer paper elements
+- [ ] Web component version
+- [ ] Support for experience customization based on values indicated on each page notes
+- [ ] Support global template UI customization
+
+# Maintainers:
+
+- ![profile](https://avatars.githubusercontent.com/DaniGuardiola?s=30) - [DaniGuardiola](https://github.com/DaniGuardiola)
+- ![profile](https://avatars.githubusercontent.com/benwinding?s=30) - [benwinding](https://github.com/benwinding)
