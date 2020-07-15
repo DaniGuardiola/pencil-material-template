@@ -1,15 +1,16 @@
 # Pencil Material Design Template
-A material design template for [Pencil, the open source prototyping tool for Windows, Mac, Linux and Firefox](https://github.com/prikhi/pencil) (HTML export template)
+A material design template for [Pencil, the open source prototyping tool for Windows, Mac, Linux and Firefox](https://github.com/evolus/pencil) (HTML export template)
+
+> **Note:** I'm no longer supporting this template. I think it doesn't work anymore with the latest versions of Pencil. As such, this repo is archived. Feel free to contact me if you want to send a pull request or become a maintainer and I'll unarchive it.
 
 # Download
-* [Mobile](https://github.com/DaniGuardiola/pencil-material-template/raw/master/build/pencil-material-template-mobile.zip) ([Demo 1](http://daniguardiola.github.io/pencil-material-template/) | [Demo 2](http://youngr.daniguardiola.me/))
+* [Mobile template](https://github.com/DaniGuardiola/pencil-material-template/raw/master/build/pencil-material-template-mobile.zip) ([Demo](http://daniguardiola.github.io/pencil-material-template/)
 
 # Features
 * Beautiful Material Design
 * Left and right buttons to navigate
-* Responsive
+* For mobile prototypes
 * Click the prototype to see the hotspots
-* Three options: mobile, tablet and desktop (at the moment only mobile has been developed)
 * Mobile web support: allows you to open it on a mobile device in fullscreen, just like if you were using a real app.
 * Keyboard arrow keys support
 
@@ -26,12 +27,3 @@ Use these collections from [Nathaniel Watson](http://www.nwatson.nz/):
 # Screenshots
 ![Example](http://i.imgur.com/UehgCdD.png?raw=true)
 ![Click areas](http://i.imgur.com/hT2k79Y.png?raw=true)
-
-# Todo
-* Add tablet and desktop editions
-* Add custom size edition
-* Solve a few bugs
-* Use Polymer paper elements
-* Web component version
-* Support for experience customization based on values indicated on each page notes
-* Support global template UI customization
